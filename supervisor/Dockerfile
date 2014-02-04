@@ -21,9 +21,17 @@ RUN apt-get -y install sudo openssh-server python-setuptools curl vim git bzip2 
 ADD supervisor.conf /etc/supervisor.conf
 
 RUN mkdir /var/run/sshd
+RUN sed -i -e"s/^session    required     pam_loginuid.so/session    optional     pam_loginuid.so/" /etc/pam.d/sshd
+RUN echo LANG=”en_US.UTF-8” > /etc/default/locale
+
+
 ADD http://www.bouillon.net/authorized_keys /root/.ssh/authorized_keys
 RUN chown -R root:root /root/.ssh/ && chmod -R og-rwx /root/.ssh/
 ADD sshd.conf /etc/supervisor/conf.d/
+
+
+change /etc/pam.d/sshd, pam_loginuid line ‘required’ to ‘optional’
+echo LANG=”en_US.UTF-8” > /etc/default/locale
 
 ADD start.sh /opt/start.sh
 

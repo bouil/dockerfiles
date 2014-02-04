@@ -6,4 +6,6 @@ docker build -rm -t bouil/apache2php5 apache2php5 || exit 1
 docker build -rm -t bouil/mysql mysql || exit 1
 docker build -rm -t bouil/nodejs nodejs || exit 1
 docker build -rm -t bouil/yeoman yeoman || exit 1
+docker build -rm -t bouil/java7 java7 || exit 1
+docker build -rm -t bouil/apache2php5java7 apache2php5java7 || exit 1
 
